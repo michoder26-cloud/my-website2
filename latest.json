@@ -1,0 +1,4 @@
+{
+  "version": "0.23.0",
+  "notes": "Empty Dashboards now lead with two clear choices—use an example or build with Claude—while checklist and connector details stay folded away. Test mode lets owners safely try their own site as a customer for two hours, without affecting stock, real messages or integrations. Updates also stop safely when local code was changed by hand."
+}

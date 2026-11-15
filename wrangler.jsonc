@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "my-website2",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // Keep enough production evidence to diagnose a failed checkout, move or integration
+  // without sampling every trace on a growing customer site.
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "head_sampling_rate": 1 },
+    "traces": { "enabled": true, "head_sampling_rate": 0.1 },
+  },
+  "assets": {
+    "directory": "public",
+    "binding": "ASSETS",
+  },
+  // Runs scheduled automations. One trigger every 15 minutes covers every rule, so nobody has to touch this.
+  // The free plan allows 5 cron triggers per account, and this site uses one.
+  "triggers": {
+    "crons": ["*/15 * * * *"],
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "my-website2",
+      // The Deploy to Cloudflare button replaces this with your own new database.
+      "database_id": "52c4a1ad-796b-499f-9684-f9ab52391c57",
+      "migrations_dir": "migrations",
+    },
+  ],
+}
